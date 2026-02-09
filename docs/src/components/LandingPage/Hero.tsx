@@ -1,21 +1,19 @@
 import Link from "@docusaurus/Link";
-import { useColorMode } from "@docusaurus/theme-common";
 import { Button } from "@site/src/components/shadcn/button";
 import { ArrowRight, Github } from "lucide-react";
 
 export default function Hero() {
-  const { colorMode } = useColorMode();
-
   return (
     <section className="relative overflow-hidden border-b border-border">
       <div className="absolute inset-0 bg-gradient-to-b from-background to-accent/30" />
       <div className="relative mx-auto max-w-5xl px-6 py-24 md:py-36 flex flex-col items-center text-center">
         <img
-          src={
-            colorMode === "dark"
-              ? "/img/santa-white.svg"
-              : "/img/santa-black.svg"
-          }
+          src="/img/santa-black.svg#light"
+          alt="Santa"
+          className="h-16 md:h-20 w-auto mb-10"
+        />
+        <img
+          src="/img/santa-white.svg#dark"
           alt="Santa"
           className="h-16 md:h-20 w-auto mb-10"
         />
