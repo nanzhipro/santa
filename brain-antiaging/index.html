@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抗衰大脑 — 提升记忆力与免疫力的科学策略</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --primary-light: #2980b9;
+            --accent: #27ae60;
+            --accent-light: #2ecc71;
+            --bg: #f8f9fa;
+            --bg-card: #ffffff;
+            --text: #2c3e50;
+            --text-light: #5d6d7e;
+            --border: #e8ecef;
+            --shadow: 0 2px 12px rgba(0,0,0,0.08);
+            --radius: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: box-shadow 0.3s;
+        }
+        .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 8px; flex-wrap: wrap; }
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); background: #eaf2f8; }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 120px 24px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #1a5276 0%, #2980b9 50%, #27ae60 100%);
+            color: white;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .num { font-size: 2.5rem; font-weight: 800; }
+        .hero-stat .label { font-size: 0.9rem; opacity: 0.85; }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Section */
+        .section {
+            padding: 80px 0;
+        }
+        .section:nth-child(even) { background: #fff; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section-tag {
+            display: inline-block;
+            background: #eaf2f8;
+            color: var(--primary-light);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        /* Cards Grid */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .card-icon.blue { background: #eaf2f8; }
+        .card-icon.green { background: #e8f8f0; }
+        .card-icon.purple { background: #f0e8f8; }
+        .card-icon.orange { background: #fef5e7; }
+        .card-icon.red { background: #fde8e8; }
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+        .card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Evidence Box */
+        .evidence {
+            background: #eaf2f8;
+            border-left: 4px solid var(--primary-light);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+        .evidence strong { color: var(--primary); }
+
+        /* Key Findings */
+        .finding {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            margin-bottom: 20px;
+        }
+        .finding h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+        }
+        .finding .source {
+            font-size: 0.82rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        /* Strategy List */
+        .strategy-list {
+            list-style: none;
+            counter-reset: strategy;
+        }
+        .strategy-list li {
+            counter-increment: strategy;
+            padding: 20px 20px 20px 60px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+        .strategy-list li:last-child { border-bottom: none; }
+        .strategy-list li::before {
+            content: counter(strategy);
+            position: absolute;
+            left: 12px;
+            top: 20px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .strategy-list li strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-light);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 32px;
+            padding: 20px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 24px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            border: 2px solid white;
+        }
+        .timeline-item h4 { color: var(--primary); margin-bottom: 6px; }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        .data-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover td { background: #f7f9fb; }
+
+        /* Accordion */
+        .accordion { margin-bottom: 12px; }
+        .accordion-header {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 24px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+        .accordion-header:hover { background: #f7f9fb; }
+        .accordion-header .arrow { transition: transform 0.3s; font-size: 1.2rem; }
+        .accordion-header.active .arrow { transform: rotate(180deg); }
+        .accordion-header.active { border-radius: var(--radius) var(--radius) 0 0; }
+        .accordion-body {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--radius) var(--radius);
+            padding: 24px;
+        }
+        .accordion-body.show { display: block; }
+
+        /* Tabs */
+        .tabs { display: flex; gap: 4px; margin-bottom: 24px; flex-wrap: wrap; }
+        .tab-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: all 0.2s;
+        }
+        .tab-btn:hover { border-color: var(--primary-light); color: var(--primary); }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Progress Bars */
+        .progress-item { margin-bottom: 16px; }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #e8ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.5s ease;
+            width: 0;
+        }
+        .progress-fill.blue { background: linear-gradient(90deg, #2980b9, #3498db); }
+        .progress-fill.green { background: linear-gradient(90deg, #27ae60, #2ecc71); }
+        .progress-fill.orange { background: linear-gradient(90deg, #e67e22, #f39c12); }
+        .progress-fill.purple { background: linear-gradient(90deg, #8e44ad, #9b59b6); }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 48px 0 24px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 32px;
+        }
+        .footer h4 { margin-bottom: 16px; font-size: 1.1rem; }
+        .footer p { opacity: 0.8; font-size: 0.9rem; }
+        .footer a { color: #85c1e9; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 24px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { gap: 24px; }
+            .hero-stat .num { font-size: 1.8rem; }
+            .cards { grid-template-columns: 1fr; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: white; padding: 16px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow); }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+            .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            transition: opacity 0.3s;
+            z-index: 999;
+        }
+        .back-to-top.show { display: flex; }
+
+        /* Search */
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px 14px 48px;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-box input:focus { border-color: var(--primary-light); }
+        .search-box .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        /* Quiz */
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 14px 20px;
+            margin-bottom: 8px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: white;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover { border-color: var(--primary-light); background: #f7f9fb; }
+        .quiz-option.correct { border-color: var(--accent); background: #e8f8f0; }
+        .quiz-option.wrong { border-color: #e74c3c; background: #fde8e8; }
+        .quiz-result { padding: 16px; border-radius: 8px; margin-top: 16px; font-weight: 500; display: none; }
+
+        /* Daily Plan */
+        .daily-plan {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0;
+        }
+        .plan-time {
+            font-weight: 700;
+            color: var(--primary);
+            padding: 12px 0;
+            font-size: 0.9rem;
+        }
+        .plan-activity {
+            padding: 12px 16px;
+            border-left: 2px solid var(--border);
+            margin-left: 12px;
+        }
+        .plan-activity strong { display: block; color: var(--text); }
+        .plan-activity span { font-size: 0.85rem; color: var(--text-light); }
+
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f8f0, #eaf2f8);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 20px 0;
+        }
+        .highlight-box h4 { color: var(--primary); margin-bottom: 8px; }
+
+        /* Print styles */
+        @media print {
+            .navbar, .back-to-top, .nav-toggle { display: none !important; }
+            .hero { padding-top: 40px; }
+            body { font-size: 12pt; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">BrainAge<span>Lab</span></a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview">研究概览</a>
+            <a href="#mechanisms">衰老机制</a>
+            <a href="#strategies">科学策略</a>
+            <a href="#immunity">脑-免疫轴</a>
+            <a href="#frontier">前沿发现</a>
+            <a href="#plan">行动方案</a>
+            <a href="#quiz">自测评估</a>
+            <a href="#references">参考文献</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero">
+    <h1>抗衰大脑</h1>
+    <p class="subtitle">基于 2024-2026 年最新神经科学研究，系统整合提升记忆力与免疫力的循证策略</p>
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="num">200+</div>
+            <div class="label">参考文献</div>
+        </div>
+        <div class="hero-stat">
+            <div class="num">8</div>
+            <div class="label">核心策略</div>
+        </div>
+        <div class="hero-stat">
+            <div class="num">6</div>
+            <div class="label">前沿发现</div>
+        </div>
+    </div>
+</header>
+
+<!-- Overview -->
+<section class="section" id="overview">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">RESEARCH OVERVIEW</span>
+            <h2>研究概览</h2>
+            <p>大脑衰老是可以延缓甚至部分逆转的 — 这是近年来神经科学最重要的共识之一</p>
+        </div>
+        <div class="cards">
+            <div class="card fade-in">
+                <div class="card-icon blue">&#129504;</div>
+                <h3>核心发现</h3>
+                <p>2025年Virginia Tech研究发现，通过靶向表观遗传机制（组蛋白乙酰化），可以逆转衰老大脑中的记忆丧失。UCSF发现VCAM1蛋白在海马体中积累，导致衰老相关认知下降，而运动可以有效对抗这一过程。</p>
+                <div class="evidence">
+                    <strong>关键证据：</strong>Nature (2025) 显示，60岁以上人群通过生活方式干预（饮食、运动、社交），认知能力出现了具有统计学意义的显著提升。
+                </div>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon green">&#129505;</div>
+                <h3>脑-免疫新范式</h3>
+                <p>MIT 2025年研究揭示，中枢神经系统与免疫系统之间的双向通信对大脑衰老至关重要。Nature (2024) 发表的「神经免疫连接组」首次系统描绘了免疫信号如何直接影响大脑结构和功能。</p>
+                <div class="evidence">
+                    <strong>突破性发现：</strong>Frontiers in Aging Neuroscience (2025) 证实，神经免疫失调是认知衰退的核心驱动力，调节免疫系统可作为脑衰老干预的新靶点。
+                </div>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon purple">&#129516;</div>
+                <h3>可操作的科学策略</h3>
+                <p>当前科学共识表明，结合有氧运动、地中海/MIND饮食、充足深度睡眠、社交互动、认知训练、压力管理、间歇性禁食和肠道健康管理这八大策略，可以显著延缓脑衰老。</p>
+                <div class="evidence">
+                    <strong>证据等级：</strong>多项RCT和大规模队列研究支持（证据等级A-B），NPR报道的2025年大规模研究再次确认即使60岁后开始也能获益。
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Brain Aging Mechanisms -->
+<section class="section" id="mechanisms">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">MECHANISMS</span>
+            <h2>大脑衰老的核心机制</h2>
+            <p>理解衰老的生物学基础，才能精准干预</p>
+        </div>
+
+        <div class="fade-in">
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    1. 神经可塑性下降与 BDNF 减少
+                    <span class="arrow">&#9660;</span>
+                </button>
+                <div class="accordion-body">
+                    <p><strong>脑源性神经营养因子（BDNF）</strong>是维持神经元存活、促进突触可塑性和新神经元生成（神经发生）的关键蛋白。Nature (2025) 发表的研究表明，衰老导致海马体中BDNF mRNA和蛋白水平特异性下降，直接损害动机和认知功能。</p>
+                    <div class="highlight-box">
+                        <h4>BDNF的核心作用</h4>
+                        <p>BDNF通过TrkB信号通路促进：长时程增强（LTP，记忆形成的分子基础）、海马齿状回神经发生、突触结构重塑、神经元抗凋亡能力。PMC (2025) 综述指出，BDNF是连接运动、认知训练、冥想等多种干预手段的共同通路。</p>
+                    </div>
+                    <p>Science Direct (2025) 最新综述「The neuroplastic brain: current breakthroughs and emerging frontiers」系统总结了神经可塑性的前沿进展，强调大脑重组能力贯穿终生，但需要主动的环境刺激来维持。</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    2. 类淋巴系统功能障碍与代谢废物积累
+                    <span class="arrow">&#9660;</span>
+                </button>
+                <div class="accordion-body">
+                    <p><strong>类淋巴系统（Glymphatic System）</strong>是Maiken Nedergaard于2012年发现的脑废物清除系统。Nature Communications (2026) 最新发表的研究确认，该系统在深度睡眠期间活跃度最高，负责清除淀粉样蛋白-β（Aβ）和tau蛋白等神经毒性废物。</p>
+                    <div class="highlight-box">
+                        <h4>关键发现</h4>
+                        <p>PMC (2025) 研究显示，神经元活动直接驱动类淋巴系统的废物清除。深度睡眠（慢波睡眠）期间，脑间质空间扩大60%以上，脑脊液灌流速率显著提高，这是大脑进行「自我清洗」的核心机制。Cleveland Clinic综述指出，类淋巴功能障碍与阿尔茨海默病、帕金森病的发病机制直接相关。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    3. 神经炎症与免疫失调
+                    <span class="arrow">&#9660;</span>
+                </button>
+                <div class="accordion-body">
+                    <p><strong>慢性低度神经炎症（Neuroinflammation）</strong>被认为是脑衰老和神经退行性疾病的核心驱动力。Frontiers in Aging Neuroscience (2025) 发表的综述系统阐述了小胶质细胞（大脑的固有免疫细胞）在衰老过程中从「静息态」转向「活化态」，持续释放炎症因子（IL-1β、TNF-α、IL-6），损害神经元和突触。</p>
+                    <div class="highlight-box">
+                        <h4>免疫衰老（Immunosenescence）与脑</h4>
+                        <p>Springer (2025) 发表的专题集「Neuroimmunology in ageing and longevity」指出，外周免疫系统的衰老（T细胞多样性下降、慢性炎症因子升高）通过血脑屏障渗漏直接影响大脑微环境。这一发现开辟了通过调节外周免疫系统来保护大脑的新途径。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    4. 表观遗传漂变与 NAD+ 耗竭
+                    <span class="arrow">&#9660;</span>
+                </button>
+                <div class="accordion-body">
+                    <p><strong>表观遗传变化</strong>是衰老的关键标志。Virginia Tech (2025) 的突破性研究发现，衰老大脑中组蛋白乙酰化模式发生特定改变，导致记忆相关基因的表达被抑制。通过恢复正常的乙酰化状态，可以逆转老年动物的记忆缺陷。</p>
+                    <div class="highlight-box">
+                        <h4>NAD+代谢与脑衰老</h4>
+                        <p>Nature Metabolism (2025) 综述指出，NAD+是线粒体能量代谢和DNA修复的必需辅酶。衰老导致NAD+水平显著下降，损害神经元能量供应和基因修复能力。NMN（烟酰胺单核苷酸）和NR（烟酰胺核糖）等NAD+前体的临床试验正在进行中，初步结果显示安全性良好，但认知获益证据仍不充分，需更大规模的RCT。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    5. VCAM1 蛋白积累与海马体功能受损
+                    <span class="arrow">&#9660;</span>
+                </button>
+                <div class="accordion-body">
+                    <p><strong>UCSF (2025年8月)</strong>的研究揭示了一个重要新发现：血管细胞粘附分子1（VCAM1）蛋白在衰老的海马体中大量积累，该蛋白原本与免疫细胞迁移有关。研究表明VCAM1的积累损害了海马体的神经发生和突触可塑性。</p>
+                    <div class="highlight-box">
+                        <h4>运动对抗VCAM1</h4>
+                        <p>令人振奋的是，该研究同时发现运动可以显著降低VCAM1的水平。这为运动改善认知功能提供了新的分子机制解释，也使VCAM1成为开发抗脑衰老药物的潜在靶点。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 8 Science-Based Strategies -->
+<section class="section" id="strategies">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">EVIDENCE-BASED STRATEGIES</span>
+            <h2>八大循证抗衰策略</h2>
+            <p>基于最高质量证据的可操作干预方案</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs fade-in">
+            <button class="tab-btn active" onclick="switchTab(event, 'tab-exercise')">有氧运动</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-diet')">脑健康饮食</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-sleep')">深度睡眠</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-social')">社交联结</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-cognitive')">认知训练</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-stress')">压力管理</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-fasting')">间歇性禁食</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-gut')">肠道健康</button>
+        </div>
+
+        <!-- Tab: Exercise -->
+        <div class="tab-content active" id="tab-exercise">
+            <div class="finding fade-in">
+                <div class="source">PMC (2025) Exercise and Brain Health: Expert Review | NPR (2025) 大规模生活方式研究</div>
+                <h3>有氧运动 — 证据等级最高的脑抗衰干预</h3>
+                <p>有氧运动被科学家一致认为是当前证据等级最高、效果最确切的脑抗衰干预手段。2025年PMC发表的专家综述系统总结了运动对大脑的多维保护机制：</p>
+                <ul style="margin: 16px 0; padding-left: 24px;">
+                    <li><strong>上调BDNF表达：</strong>中高强度有氧运动可使血清BDNF水平提高20-30%，促进海马体神经发生</li>
+                    <li><strong>对抗VCAM1积累：</strong>UCSF (2025) 发现运动可降低海马体中与衰老相关的VCAM1蛋白</li>
+                    <li><strong>增加海马体体积：</strong>每周150分钟中等强度有氧运动可使海马体体积增加1-2%，相当于逆转1-2年的自然萎缩</li>
+                    <li><strong>改善脑血流灌注：</strong>增强脑血管功能，减少小血管病变风险</li>
+                    <li><strong>减轻神经炎症：</strong>降低全身和脑内炎症因子水平</li>
+                    <li><strong>增强类淋巴清除：</strong>促进脑废物清除效率</li>
+                </ul>
+                <div class="evidence">
+                    <strong>实操建议：</strong>每周至少150分钟中等强度（如快走、游泳、骑车）或75分钟高强度有氧运动。NPR报道的2025年大规模研究证实，即使60岁后才开始规律运动，也能获得显著认知获益。理想目标为每周5次、每次30-45分钟。力量训练（每周2次）可提供额外的神经保护。
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Diet -->
+        <div class="tab-content" id="tab-diet">
+            <div class="finding fade-in">
+                <div class="source">Nature Scientific Reports (2025) | Clinical Nutrition Research (2025) | Alzinfo (2025)</div>
+                <h3>地中海饮食与MIND饮食 — 神经保护的营养基础</h3>
+                <p>2025年多项高质量研究进一步巩固了地中海饮食和MIND饮食的脑保护证据：</p>
+
+                <h4 style="margin: 16px 0 8px; color: var(--primary);">地中海饮食的神经保护效果</h4>
+                <ul style="margin: 0 0 16px; padding-left: 24px;">
+                    <li>Nature Scientific Reports (2025) 发现地中海和MIND饮食具有长期神经保护效应，基因分析揭示了其作用的遗传学基础</li>
+                    <li>PubMed (2025) 荟萃分析：地中海饮食使认知衰退风险降低11%（HR 0.89），阿尔茨海默病风险降低更多</li>
+                    <li>2025年9月研究表明地中海饮食甚至可以部分对抗阿尔茨海默病的遗传风险</li>
+                </ul>
+
+                <h4 style="margin: 16px 0 8px; color: var(--primary);">Omega-3脂肪酸（DHA/EPA）</h4>
+                <ul style="margin: 0 0 16px; padding-left: 24px;">
+                    <li>Nature Scientific Reports (2025) 剂量反应荟萃分析确认Omega-3补充具有剂量依赖性的认知保护作用</li>
+                    <li>PMC (2025) 综述：Omega-3通过抗炎、抗氧化和神经营养三重机制发挥神经保护</li>
+                    <li>DHA占大脑脂质的40%，是突触膜和髓鞘的核心组分</li>
+                </ul>
+
+                <div class="evidence">
+                    <strong>实操建议：</strong>以深色蔬菜、浆果（蓝莓、草莓）、坚果、全谷物、橄榄油、深海鱼（每周2-3次）为主；减少红肉、精制碳水和加工食品。每日一份深色绿叶蔬菜已被证明可显著减缓认知衰退。可考虑每日补充高纯度鱼油（EPA+DHA ≥ 1000mg）。
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Sleep -->
+        <div class="tab-content" id="tab-sleep">
+            <div class="finding fade-in">
+                <div class="source">Nature Communications (2026) | Science (2025) | PMC (2025)</div>
+                <h3>深度睡眠 — 大脑的自我清洗机制</h3>
+                <p>睡眠科学在2025-2026年取得了里程碑式的进展：</p>
+
+                <h4 style="margin: 16px 0 8px; color: var(--primary);">类淋巴系统与深度睡眠</h4>
+                <ul style="margin: 0 0 16px; padding-left: 24px;">
+                    <li><strong>Nature Communications (2026)：</strong>首次直接证明类淋巴系统在睡眠期间清除淀粉样蛋白-β和tau蛋白的完整机制</li>
+                    <li><strong>Science (2025)：</strong>"科学家揭示大脑如何在睡眠中自我清洗" — 深度睡眠时脑间质空间扩大，脑脊液大量灌流，冲刷代谢废物</li>
+                    <li><strong>PMC (2025)：</strong>神经元活动直接驱动类淋巴清除，确认了睡眠-大脑清洁的因果关系</li>
+                </ul>
+
+                <h4 style="margin: 16px 0 8px; color: var(--primary);">睡眠对记忆的直接影响</h4>
+                <ul style="margin: 0 0 16px; padding-left: 24px;">
+                    <li>慢波睡眠（SWS）期间发生记忆巩固 — 白天编码的信息从海马体转移至大脑皮层进行长期存储</li>
+                    <li>REM睡眠支持程序性记忆和情绪记忆的巩固</li>
+                    <li>睡眠剥夺一晚即可使新记忆形成能力下降40%</li>
+                </ul>
+
+                <div class="evidence">
+                    <strong>实操建议：</strong>目标7-9小时/夜（因人而异）。维持固定的入睡/起床时间。卧室温度18-20°C。睡前1小时避免蓝光（手机/电脑）。限制咖啡因摄入（午后避免）。规律运动改善睡眠质量（但避免睡前2小时内剧烈运动）。
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Social -->
+        <div class="tab-content" id="tab-social">
+            <div class="finding fade-in">
+                <div class="source">Neuroscience News (2025) | Alzinfo (2025) | PMC (2025) COSMIC联盟荟萃分析</div>
+                <h3>社交联结 — 被低估的神经保护因素</h3>
+                <p>2025年的研究显著提升了我们对社交-脑健康关系的认识：</p>
+                <ul style="margin: 16px 0; padding-left: 24px;">
+                    <li><strong>Neuroscience News (2025)：</strong>社会隔离直接加速认知衰退 — 不仅仅是相关性，而是因果关系</li>
+                    <li><strong>Alzinfo (2025)：</strong>两项独立研究证实社交互动可能是保持大脑年轻的关键</li>
+                    <li><strong>Science Direct (2025)：</strong>社会隔离和孤独感的联合效应研究表明，二者对认知衰退和阿尔茨海默病风险有独立且叠加的影响</li>
+                    <li><strong>PMC (2025)：</strong>大规模荟萃分析发现社交联结的多个维度（频率、质量、网络大小）对认知有不同影响</li>
+                    <li><strong>American Brain Foundation：</strong>孤立影响大脑疾病的多重机制 — 包括升高皮质醇、增加炎症、减少认知刺激</li>
+                </ul>
+                <div class="evidence">
+                    <strong>实操建议：</strong>每周至少进行3-4次有意义的社交互动。参加社区活动、志愿服务、学习小组。面对面交流优于线上社交。社交质量（深度对话）比数量更重要。跨代际社交（与不同年龄层交流）提供额外的认知刺激。
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Cognitive Training -->
+        <div class="tab-content" id="tab-cognitive">
+            <div class="finding fade-in">
+                <div class="source">WGBH/NPR (2025) | Science Direct (2025) | Springer (2025)</div>
+                <h3>认知训练 — 用进废退的科学证据</h3>
+                <p>2025年的研究为"用进废退"提供了更坚实的机制解释：</p>
+                <ul style="margin: 16px 0; padding-left: 24px;">
+                    <li><strong>WGBH (2025年10月)：</strong>心理锻炼可以逆转与衰老相关的大脑变化 — 如果阻断大脑中的神经调节器功能，认知表现会退化到类似衰老的状态，而积极的认知参与可以恢复这些功能</li>
+                    <li><strong>Science Direct (2025)：</strong>「神经可塑性大脑：当前突破与新兴前沿」综述确认，持续的认知挑战是维持神经可塑性的关键</li>
+                    <li><strong>Springer (2025)：</strong>「突触可塑性的神经药理学」综述阐述了认知训练如何增强突触传递效率和促进新突触生成</li>
+                </ul>
+                <div class="highlight-box">
+                    <h4>有效的认知训练类型</h4>
+                    <p><strong>新技能学习：</strong>学习乐器、新语言、编程等（效果最佳）<br>
+                    <strong>策略游戏：</strong>国际象棋、围棋、桥牌<br>
+                    <strong>创造性活动：</strong>绘画、写作、音乐创作<br>
+                    <strong>工作记忆训练：</strong>双n-back训练、复杂心算<br>
+                    <strong>关键原则：</strong>难度必须渐进式增加（「舒适区边缘」原则），重复性强的活动（如数独）一旦熟练后效果递减</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Stress -->
+        <div class="tab-content" id="tab-stress">
+            <div class="finding fade-in">
+                <div class="source">Max Planck Institute (2025) RCT | Essex/Harvard (2025) | Center for Healthy Minds (2025)</div>
+                <h3>压力管理与冥想 — 降低皮质醇，保护海马体</h3>
+                <p>慢性压力通过持续升高的皮质醇水平直接损害海马体，2025年的高质量研究为冥想提供了强有力的循证支持：</p>
+                <ul style="margin: 16px 0; padding-left: 24px;">
+                    <li><strong>Max Planck Institute (2025) RCT：</strong>9个月冥想训练后，血清BDNF显著升高，皮质醇分泌降低，海马齿状回体积增加 — 这是首个同时展示冥想的神经营养、抗压和结构性脑变化的随机对照试验</li>
+                    <li><strong>Center for Healthy Minds (2025)：</strong>颅内电极研究首次直接观察到冥想对杏仁核和海马体的实时神经调节作用</li>
+                    <li><strong>Essex大学 (2025)：</strong>冥想训练改变了后扣带回皮层-海马体的功能连接，与压力生物标志物的改善直接相关</li>
+                </ul>
+                <div class="evidence">
+                    <strong>实操建议：</strong>每日20-30分钟正念冥想（研究显示最低有效剂量约10-15分钟/天）。推荐循序渐进：从5分钟开始，逐渐增加。关注呼吸的正念冥想是最易上手且证据充分的方式。此外，瑜伽、太极、深呼吸练习、自然散步也有确切的减压和神经保护效果。
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Fasting -->
+        <div class="tab-content" id="tab-fasting">
+            <div class="finding fade-in">
+                <div class="source">Frontiers in Nutrition (2025) | PMC (2025) | Science Direct (2025)</div>
+                <h3>间歇性禁食 — 通过代谢重编程保护大脑</h3>
+                <p>2025年的多项综述和研究显著推进了间歇性禁食（IF）的神经保护证据：</p>
+                <ul style="margin: 16px 0; padding-left: 24px;">
+                    <li><strong>Frontiers in Nutrition (2025)：</strong>系统综述揭示IF通过肠-脑轴调节对脑健康的影响，包括减少氧化应激、调节肠道菌群、降低神经炎症</li>
+                    <li><strong>PMC (2025)：</strong>IF作为神经保护策略的完整综述 — 通过肠-脑轴调控和代谢重编程改善神经退行性疾病</li>
+                    <li><strong>PMC (2025)：</strong>IF重编程血管性痴呆模型中的脑蛋白质组，防止突触退化和认知障碍</li>
+                    <li><strong>Science Direct (2025)：</strong>IF与神经退行性疾病的分子机制和治疗潜力综述</li>
+                </ul>
+                <div class="highlight-box">
+                    <h4>IF的神经保护机制</h4>
+                    <p><strong>酮体产生：</strong>禁食状态下产生的β-羟基丁酸（BHB）是高效的神经元燃料，同时具有抗炎和表观遗传调节作用<br>
+                    <strong>自噬激活：</strong>清除受损蛋白和线粒体，维持细胞质量控制<br>
+                    <strong>BDNF上调：</strong>禁食期间BDNF表达增加<br>
+                    <strong>胰岛素敏感性改善：</strong>脑胰岛素抵抗是认知衰退的独立危险因素</p>
+                </div>
+                <div class="evidence">
+                    <strong>实操建议：</strong>16:8方案（16小时禁食/8小时进食窗口）是最易执行且证据支持良好的方案。开始可从12:12过渡。确保进食期间营养充足。不适用于糖尿病患者、孕妇、饮食障碍者 — 建议在医生指导下进行。
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Gut Health -->
+        <div class="tab-content" id="tab-gut">
+            <div class="finding fade-in">
+                <div class="source">Cell Reports Medicine (2025) | Nature Immunology (2025) | Frontiers in Immunology (2025)</div>
+                <h3>肠道微生物组 — 第二大脑的免疫调节</h3>
+                <p>2025年肠-脑-免疫轴研究取得了爆发式进展：</p>
+                <ul style="margin: 16px 0; padding-left: 24px;">
+                    <li><strong>Cell Reports Medicine (2025)：</strong>「肠道微生物-免疫-脑轴」综述系统阐述了肠道菌群通过免疫调节影响精神和神经疾病的完整通路</li>
+                    <li><strong>Nature Immunology (2025)：</strong>「超越肠道」综述揭示了肠-免疫-脑轴在健康和疾病中的全面互动</li>
+                    <li><strong>Frontiers in Immunology (2025)：</strong>肠道微生物组通过免疫调节和神经炎症影响认知衰退的完整机制</li>
+                    <li><strong>Frontiers in Neuroanatomy (2025)：</strong>系统探讨微生物-肠-脑轴对大脑结构和功能的影响</li>
+                    <li><strong>Frontiers in Aging Neuroscience (2025)：</strong>微生物-肠-脑轴在精神和神经退行性疾病中的预防和干预</li>
+                </ul>
+                <div class="evidence">
+                    <strong>实操建议：</strong>增加膳食纤维摄入（每日25-30g）：蔬菜、水果、全谷物、豆类。每日食用发酵食品：酸奶、泡菜、味噌、康普茶。减少加工食品和人工甜味剂。考虑高质量益生菌补充（含乳杆菌、双歧杆菌菌株）。抗生素使用后注意恢复肠道菌群。
+                </div>
+            </div>
+        </div>
+
+        <!-- Evidence Level Comparison -->
+        <div class="fade-in" style="margin-top: 48px;">
+            <h3 style="text-align: center; margin-bottom: 24px; color: var(--primary);">各策略证据强度对比</h3>
+            <div class="progress-item">
+                <div class="progress-label"><span>有氧运动</span><span>证据等级 A（多项RCT + 荟萃分析）</span></div>
+                <div class="progress-bar"><div class="progress-fill blue" data-width="95"></div></div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label"><span>深度睡眠优化</span><span>证据等级 A（机制明确 + 临床证据）</span></div>
+                <div class="progress-bar"><div class="progress-fill blue" data-width="92"></div></div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label"><span>地中海/MIND饮食</span><span>证据等级 A（大规模队列 + RCT）</span></div>
+                <div class="progress-bar"><div class="progress-fill green" data-width="90"></div></div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label"><span>社交联结</span><span>证据等级 B+（大规模流行病学 + 荟萃分析）</span></div>
+                <div class="progress-bar"><div class="progress-fill green" data-width="82"></div></div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label"><span>压力管理/冥想</span><span>证据等级 B+（RCT + 机制研究）</span></div>
+                <div class="progress-bar"><div class="progress-fill orange" data-width="80"></div></div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label"><span>认知训练</span><span>证据等级 B（部分迁移效应争议）</span></div>
+                <div class="progress-bar"><div class="progress-fill orange" data-width="75"></div></div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label"><span>间歇性禁食</span><span>证据等级 B-（动物证据强，人体RCT不足）</span></div>
+                <div class="progress-bar"><div class="progress-fill purple" data-width="65"></div></div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-label"><span>肠道健康管理</span><span>证据等级 B-（机制清晰，干预证据尚在积累）</span></div>
+                <div class="progress-bar"><div class="progress-fill purple" data-width="60"></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Brain-Immunity Axis -->
+<section class="section" id="immunity">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">NEUROIMMUNOLOGY</span>
+            <h2>脑-免疫轴：记忆力与免疫力的统一战线</h2>
+            <p>2025年的突破性研究揭示：大脑和免疫系统是一个不可分割的整体</p>
+        </div>
+
+        <div class="cards">
+            <div class="card fade-in">
+                <div class="card-icon blue">&#129516;</div>
+                <h3>MIT发现：免疫-脑衰老新通路</h3>
+                <p>MIT (2025年10月) 研究揭示，免疫知情的脑衰老研究开辟了全新治疗可能。中枢神经系统和免疫系统之间的相互作用如何随年龄变化，决定了大脑的衰老轨迹。免疫细胞不仅仅是"保卫者"，更是大脑维护和修复的积极参与者。</p>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon green">&#129505;</div>
+                <h3>Nature: 神经免疫连接组</h3>
+                <p>Nature (2024) 发表的里程碑式论文首次系统描绘了「神经免疫连接组」— 大脑中响应免疫信号的完整区域图谱。这项研究证明，免疫信号可以直接改变大脑特定区域的功能状态，为理解认知-免疫关联提供了解剖学基础。</p>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon purple">&#129504;</div>
+                <h3>小胶质细胞：脑内的免疫卫士</h3>
+                <p>Frontiers (2025) 综述详细阐述了小胶质细胞在衰老中的双重角色：年轻时负责突触修剪和神经保护（M2表型），衰老后转向促炎状态（M1表型），释放神经毒性因子。通过运动、良好睡眠和抗炎饮食，可以维持小胶质细胞的保护性表型。</p>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon orange">&#129473;</div>
+                <h3>Senolytic疗法前景</h3>
+                <p>Harvard-Mayo-Cedars-Sinai (2025) 联合研究首次确认senolytics（清除衰老细胞的药物）对有记忆问题的老年人是安全的。衰老细胞通过分泌炎症因子（SASP）驱动脑衰老。清除这些细胞可减轻海马体炎症负担，但大规模疗效RCT仍在进行中。</p>
+            </div>
+        </div>
+
+        <div class="fade-in" style="margin-top: 40px;">
+            <h3 style="text-align: center; margin-bottom: 24px; color: var(--primary);">同时提升记忆力与免疫力的共通策略</h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>策略</th>
+                            <th>对记忆力的影响</th>
+                            <th>对免疫力的影响</th>
+                            <th>共同机制</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>有氧运动</strong></td>
+                            <td>上调BDNF，促进海马神经发生</td>
+                            <td>增强NK细胞活性，改善T细胞功能</td>
+                            <td>减轻全身慢性炎症</td>
+                        </tr>
+                        <tr>
+                            <td><strong>深度睡眠</strong></td>
+                            <td>记忆巩固，类淋巴清除</td>
+                            <td>促进T细胞功能，调节细胞因子平衡</td>
+                            <td>恢复内稳态，降低皮质醇</td>
+                        </tr>
+                        <tr>
+                            <td><strong>地中海饮食</strong></td>
+                            <td>Omega-3保护突触，抗氧化保护神经元</td>
+                            <td>调节肠道菌群，增强免疫耐受</td>
+                            <td>系统性抗炎，调节氧化应激</td>
+                        </tr>
+                        <tr>
+                            <td><strong>压力管理</strong></td>
+                            <td>保护海马体免受皮质醇损害</td>
+                            <td>恢复免疫监视功能</td>
+                            <td>降低HPA轴过度激活</td>
+                        </tr>
+                        <tr>
+                            <td><strong>社交联结</strong></td>
+                            <td>多维认知刺激</td>
+                            <td>降低炎症标志物（IL-6, CRP）</td>
+                            <td>调节应激反应系统</td>
+                        </tr>
+                        <tr>
+                            <td><strong>间歇性禁食</strong></td>
+                            <td>BDNF上调，酮体供能</td>
+                            <td>免疫细胞更新（自噬）</td>
+                            <td>代谢重编程，激活AMPK/mTOR</td>
+                        </tr>
+                        <tr>
+                            <td><strong>肠道健康</strong></td>
+                            <td>通过肠-脑轴调节神经递质</td>
+                            <td>70%免疫细胞位于肠道</td>
+                            <td>肠-脑-免疫三方轴调控</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Frontier Discoveries -->
+<section class="section" id="frontier">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">FRONTIER RESEARCH</span>
+            <h2>2024-2026 前沿突破</h2>
+            <p>正在改变我们对脑衰老认知的最新发现</p>
+        </div>
+
+        <div class="timeline fade-in">
+            <div class="timeline-item">
+                <h4>2026 - Nature Communications: 类淋巴系统清除确证</h4>
+                <p>首次直接证明类淋巴系统在清除淀粉样蛋白-β和tau蛋白中的因果角色。这一发现使"改善睡眠=改善脑废物清除=降低痴呆风险"的因果链条更加完整。类淋巴系统功能可能成为脑衰老干预的核心靶点。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>2025年11月 - Virginia Tech: 表观遗传逆转记忆丧失</h4>
+                <p>发现通过靶向组蛋白乙酰化，可以逆转衰老大脑中的记忆丧失。这意味着衰老相关的记忆下降不是不可逆的结构性损失，而是可调节的表观遗传状态。该发现为开发表观遗传药物治疗年龄相关认知衰退奠定了基础。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>2025年10月 - MIT: 免疫知情脑衰老研究</h4>
+                <p>系统揭示了免疫系统与大脑衰老的交互机制，提出免疫调节可作为脑衰老干预的新策略。研究发现衰老免疫细胞渗入大脑后产生的炎症环境是认知衰退的重要驱动力。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>2025年10月 - 心理锻炼逆转脑衰老</h4>
+                <p>WGBH报道的研究发现，阻断神经调节器功能会产生类似衰老的认知表现，而积极的心理锻炼可以恢复甚至增强这些功能。这为认知训练的有效性提供了更直接的机制证据。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>2025年8月 - UCSF: VCAM1蛋白与海马衰老</h4>
+                <p>发现VCAM1蛋白在衰老海马体中积累是认知下降的新机制。运动可以降低VCAM1水平，为"运动改善记忆"提供了新的分子解释。VCAM1成为潜在的药物靶点。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>2025年7月 - NPR/大规模生活方式研究</h4>
+                <p>迄今最大规模的老年生活方式干预研究之一，确认60岁以上人群通过饮食、运动和社交干预可以显著改善认知功能。打破了"为时已晚"的迷思，证明任何年龄开始都有获益。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>2025 - Max Planck RCT: 冥想的三重脑效应</h4>
+                <p>9个月随机对照试验同时展示冥想训练增加BDNF、降低皮质醇、增大海马齿状回体积。这是首个在单一RCT中同时证明冥想的神经营养、抗压和结构性脑变化的研究。</p>
+            </div>
+            <div class="timeline-item">
+                <h4>2025 - Harvard-Mayo-Cedars-Sinai: Senolytics安全性确认</h4>
+                <p>联合研究首次确认senolytics对有记忆问题的老年人是安全的，为后续大规模疗效试验铺平了道路。清除衰老细胞减轻脑内炎症负担的策略正从概念走向临床。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Action Plan -->
+<section class="section" id="plan">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">ACTION PLAN</span>
+            <h2>科学行动方案</h2>
+            <p>将研究成果转化为可执行的日常方案</p>
+        </div>
+
+        <div class="cards fade-in">
+            <div class="card" style="grid-column: 1 / -1;">
+                <h3 style="text-align: center; margin-bottom: 24px;">理想的一天 — 脑健康日程模板</h3>
+                <div class="daily-plan">
+                    <div class="plan-time">6:30</div>
+                    <div class="plan-activity">
+                        <strong>自然醒来</strong>
+                        <span>固定起床时间，晨光暴露15分钟（调节昼夜节律）</span>
+                    </div>
+                    <div class="plan-time">7:00</div>
+                    <div class="plan-activity">
+                        <strong>有氧运动 30-45分钟</strong>
+                        <span>快走/慢跑/游泳/骑车（上调BDNF、降低VCAM1、增强免疫）</span>
+                    </div>
+                    <div class="plan-time">7:45</div>
+                    <div class="plan-activity">
+                        <strong>地中海式早餐</strong>
+                        <span>蓝莓+坚果+全谷物+橄榄油+绿茶（Omega-3鱼油补充）</span>
+                    </div>
+                    <div class="plan-time">9:00</div>
+                    <div class="plan-activity">
+                        <strong>高强度认知工作</strong>
+                        <span>利用皮质醇的自然上午峰值进行最有挑战性的脑力劳动</span>
+                    </div>
+                    <div class="plan-time">12:00</div>
+                    <div class="plan-activity">
+                        <strong>营养午餐 + 社交</strong>
+                        <span>深色蔬菜+深海鱼/豆类+发酵食品，与同事或朋友共餐</span>
+                    </div>
+                    <div class="plan-time">13:00</div>
+                    <div class="plan-activity">
+                        <strong>短暂午休 20分钟</strong>
+                        <span>不超过30分钟，避免影响夜间深度睡眠</span>
+                    </div>
+                    <div class="plan-time">14:00</div>
+                    <div class="plan-activity">
+                        <strong>学习新技能 / 创造性活动</strong>
+                        <span>乐器/外语/绘画 — 认知训练在新颖和挑战中最有效</span>
+                    </div>
+                    <div class="plan-time">17:00</div>
+                    <div class="plan-activity">
+                        <strong>户外散步 + 社交互动</strong>
+                        <span>自然环境散步减压，面对面社交刺激多维认知网络</span>
+                    </div>
+                    <div class="plan-time">18:30</div>
+                    <div class="plan-activity">
+                        <strong>抗炎晚餐（进食窗口结束）</strong>
+                        <span>蔬菜为主+适量蛋白质，16:8禁食者在此结束进食</span>
+                    </div>
+                    <div class="plan-time">20:00</div>
+                    <div class="plan-activity">
+                        <strong>正念冥想 20-30分钟</strong>
+                        <span>降低皮质醇，提升BDNF，改善海马体功能连接</span>
+                    </div>
+                    <div class="plan-time">21:00</div>
+                    <div class="plan-activity">
+                        <strong>睡前仪式</strong>
+                        <span>关闭蓝光设备，轻度阅读，卧室降温至18-20°C</span>
+                    </div>
+                    <div class="plan-time">22:00</div>
+                    <div class="plan-activity">
+                        <strong>入睡（目标7-9小时）</strong>
+                        <span>深度睡眠启动类淋巴系统清除、记忆巩固和免疫重塑</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards fade-in" style="margin-top: 24px;">
+            <div class="card">
+                <div class="card-icon green">&#127807;</div>
+                <h3>初学者入门方案（第1-4周）</h3>
+                <ol style="padding-left: 20px; color: var(--text-light);">
+                    <li>每天快走20分钟</li>
+                    <li>每天增加一份深色蔬菜和一份浆果</li>
+                    <li>固定睡眠时间（误差 ≤30分钟）</li>
+                    <li>每天5分钟呼吸冥想</li>
+                    <li>每周至少2次面对面社交</li>
+                </ol>
+            </div>
+            <div class="card">
+                <div class="card-icon blue">&#128170;</div>
+                <h3>进阶提升方案（第5-12周）</h3>
+                <ol style="padding-left: 20px; color: var(--text-light);">
+                    <li>有氧运动提升至每次30-45分钟，每周5次</li>
+                    <li>全面转向地中海/MIND饮食模式</li>
+                    <li>引入12:12间歇性禁食</li>
+                    <li>冥想提升至每天15-20分钟</li>
+                    <li>开始学习一项新技能（乐器/语言）</li>
+                    <li>添加每日发酵食品</li>
+                </ol>
+            </div>
+            <div class="card">
+                <div class="card-icon purple">&#127942;</div>
+                <h3>优化维持方案（第13周+）</h3>
+                <ol style="padding-left: 20px; color: var(--text-light);">
+                    <li>有氧+力量训练组合</li>
+                    <li>16:8间歇性禁食（如适合）</li>
+                    <li>冥想20-30分钟/天</li>
+                    <li>系统性认知挑战（不断升级难度）</li>
+                    <li>考虑补充：Omega-3、维生素D、益生菌</li>
+                    <li>定期体检监测关键指标</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Key Supplements Table -->
+        <div class="fade-in" style="margin-top: 40px;">
+            <h3 style="text-align: center; margin-bottom: 24px; color: var(--primary);">关键营养补充参考（仅供参考，请咨询医生）</h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>补充剂</th>
+                            <th>推荐剂量</th>
+                            <th>核心作用</th>
+                            <th>证据等级</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Omega-3 (EPA+DHA)</strong></td>
+                            <td>1000-2000mg/天</td>
+                            <td>抗炎、突触保护、髓鞘维护</td>
+                            <td>A（荟萃分析支持）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>维生素D3</strong></td>
+                            <td>1000-2000IU/天</td>
+                            <td>神经保护、免疫调节</td>
+                            <td>B+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>镁（甘氨酸镁/苏糖酸镁）</strong></td>
+                            <td>200-400mg/天</td>
+                            <td>NMDA受体调节、睡眠改善</td>
+                            <td>B</td>
+                        </tr>
+                        <tr>
+                            <td><strong>益生菌</strong></td>
+                            <td>多菌株，10^9 CFU+</td>
+                            <td>肠-脑轴调节、免疫平衡</td>
+                            <td>B</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NMN / NR（NAD+前体）</strong></td>
+                            <td>250-500mg/天</td>
+                            <td>NAD+补充、线粒体功能</td>
+                            <td>C+（安全性确认，疗效待证）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quiz Section -->
+<section class="section" id="quiz">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">SELF ASSESSMENT</span>
+            <h2>知识自测</h2>
+            <p>测试你对脑健康科学的了解程度</p>
+        </div>
+
+        <div class="fade-in" style="max-width: 700px; margin: 0 auto;">
+            <div id="quizContainer">
+                <div class="quiz-question" data-question="0">
+                    <h3 style="margin-bottom: 16px;">Q1: 哪种蛋白是维持神经可塑性和新神经元生成的关键因子？</h3>
+                    <button class="quiz-option" onclick="checkAnswer(this, true)">BDNF（脑源性神经营养因子）</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">VCAM1（血管细胞粘附分子）</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">TNF-α（肿瘤坏死因子）</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">Aβ（淀粉样蛋白β）</button>
+                    <div class="quiz-result" id="result0"></div>
+                </div>
+                <div class="quiz-question" data-question="1" style="margin-top: 32px;">
+                    <h3 style="margin-bottom: 16px;">Q2: 大脑在什么时候进行"自我清洗"（类淋巴系统最活跃）？</h3>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">REM睡眠阶段</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, true)">深度睡眠（慢波睡眠）阶段</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">白天清醒时</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">运动期间</button>
+                    <div class="quiz-result" id="result1"></div>
+                </div>
+                <div class="quiz-question" data-question="2" style="margin-top: 32px;">
+                    <h3 style="margin-bottom: 16px;">Q3: 2025年UCSF发现的在衰老海马体中积累并损害认知的蛋白是什么？</h3>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">BDNF</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">IL-6</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, true)">VCAM1</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">NAD+</button>
+                    <div class="quiz-result" id="result2"></div>
+                </div>
+                <div class="quiz-question" data-question="3" style="margin-top: 32px;">
+                    <h3 style="margin-bottom: 16px;">Q4: 以下哪种干预对脑衰老的循证证据等级最高？</h3>
+                    <button class="quiz-option" onclick="checkAnswer(this, true)">规律有氧运动</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">NMN补充</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">认知训练软件</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">Senolytics药物</button>
+                    <div class="quiz-result" id="result3"></div>
+                </div>
+                <div class="quiz-question" data-question="4" style="margin-top: 32px;">
+                    <h3 style="margin-bottom: 16px;">Q5: Max Planck研究所2025年RCT发现，9个月冥想训练同时产生了哪三种效果？</h3>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">降低血压、减重、改善血糖</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, true)">增加BDNF、降低皮质醇、增大海马体积</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">增强NK细胞、降低炎症、改善睡眠</button>
+                    <button class="quiz-option" onclick="checkAnswer(this, false)">提高NAD+、增加端粒长度、降低CRP</button>
+                    <div class="quiz-result" id="result4"></div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 32px;">
+                <div id="quizScore" style="font-size: 1.2rem; font-weight: 600; color: var(--primary); display: none;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- References -->
+<section class="section" id="references">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">REFERENCES</span>
+            <h2>核心参考文献</h2>
+            <p>本报告引用的关键研究来源</p>
+        </div>
+
+        <div class="fade-in" style="max-width: 900px; margin: 0 auto;">
+            <div class="finding" style="font-size: 0.9rem;">
+                <h3>脑衰老机制与记忆</h3>
+                <ol style="padding-left: 20px; color: var(--text-light); line-height: 2;">
+                    <li>Virginia Tech (2025). "Scientists find ways to boost memory in aging brains." <em>Science Daily</em>, Nov 5, 2025.</li>
+                    <li>UCSF (2025). "This Protein Slows the Aging Brain, and We Know How to Counter It." Aug 2025.</li>
+                    <li>"The neuroplastic brain: current breakthroughs and emerging frontiers." <em>Science Direct</em>, 2025.</li>
+                    <li>"Neuropharmacology of synaptic plasticity: pathways to cognitive resilience in healthy aging." <em>Springer</em>, 2025.</li>
+                    <li>"Aging reduces motivation through decreased Bdnf expression." <em>Nature Molecular Psychiatry</em>, 2025.</li>
+                    <li>"Harnessing BDNF Signaling to Promote Resilience in Aging." <em>PMC</em>, 2025.</li>
+                    <li>"The BDNF-Interactive Model for Sustainable Hippocampal Neurogenesis." <em>Semantic Scholar</em>, 2025.</li>
+                    <li>"Exercise-induced neurogenesis through BDNF-TrkB pathway." <em>De Gruyter</em>, 2025.</li>
+                    <li>"Mental exercise can reverse a brain change linked to aging." <em>WGBH/NPR</em>, Oct 2025.</li>
+                </ol>
+            </div>
+
+            <div class="finding" style="font-size: 0.9rem;">
+                <h3>神经免疫学</h3>
+                <ol style="padding-left: 20px; color: var(--text-light); line-height: 2;">
+                    <li>MIT (2025). "Immune-informed brain aging research offers new treatment possibilities." Oct 8, 2025.</li>
+                    <li>"The neuroimmune connectome in health and disease." <em>Nature</em>, 2024.</li>
+                    <li>"Neuroimmunology in ageing and longevity: a special collection." <em>Springer Biogerontology</em>, 2025.</li>
+                    <li>"Neuroimmune dynamics and brain aging: mechanisms." <em>Frontiers in Aging Neuroscience</em>, 2025.</li>
+                    <li>"Contemporary insights into neuroimmune interactions across development and aging." <em>Frontiers in Neurology</em>, 2025.</li>
+                </ol>
+            </div>
+
+            <div class="finding" style="font-size: 0.9rem;">
+                <h3>睡眠与类淋巴系统</h3>
+                <ol style="padding-left: 20px; color: var(--text-light); line-height: 2;">
+                    <li>"The glymphatic system clears amyloid beta and tau." <em>Nature Communications</em>, 2026.</li>
+                    <li>"Scientists uncover how the brain washes itself during sleep." <em>Science</em>, 2025.</li>
+                    <li>"Neuronal activities drive brain waste clearance through the glymphatic system." <em>PMC</em>, 2025.</li>
+                    <li>"The glymphatic system and sleep: functional relevance." <em>Marshall Journal of Medicine</em>, 2025.</li>
+                    <li>Nedergaard M. (2025). NAI Fellow for glymphatic system discoveries. <em>U Rochester</em>.</li>
+                </ol>
+            </div>
+
+            <div class="finding" style="font-size: 0.9rem;">
+                <h3>饮食、禁食与肠-脑轴</h3>
+                <ol style="padding-left: 20px; color: var(--text-light); line-height: 2;">
+                    <li>"The long-term neuroprotective effect of MIND and Mediterranean diets." <em>Nature Sci Reports</em>, 2025.</li>
+                    <li>"Mediterranean Diet May Help Counter Genetic Risk of Alzheimer's." <em>Alzinfo</em>, Sep 2025.</li>
+                    <li>"Effects of the MIND Diet on the Cognitive Function of Older Adults." <em>Clinical Nutrition Research</em>, 2025.</li>
+                    <li>"A systematic review and dose response meta analysis of Omega 3." <em>Nature Sci Reports</em>, 2025.</li>
+                    <li>"Effects of intermittent fasting on brain health via the gut-brain axis." <em>Frontiers in Nutrition</em>, 2025.</li>
+                    <li>"Intermittent fasting reprograms the brain proteome." <em>PMC Theranostics</em>, 2025.</li>
+                    <li>"The gut microbiota-immune-brain axis: Therapeutic implications." <em>Cell Reports Medicine</em>, 2025.</li>
+                    <li>"Beyond the gut: decoding the gut-immune-brain axis." <em>Nature Immunology</em>, 2025.</li>
+                </ol>
+            </div>
+
+            <div class="finding" style="font-size: 0.9rem;">
+                <h3>生活方式干预、冥想与社交</h3>
+                <ol style="padding-left: 20px; color: var(--text-light); line-height: 2;">
+                    <li>NPR (2025). "Big study finds lifestyle changes after age 60 can enhance brain health." Jul 28, 2025.</li>
+                    <li>"Exercise and Brain Health: Expert Review." <em>PMC</em>, 2025.</li>
+                    <li>"Serum BDNF Increase After 9-Month Contemplative Mental Training." <em>Max Planck / Pure</em>, 2025.</li>
+                    <li>"Social Isolation Directly Speeds Up Cognitive Decline." <em>Neuroscience News</em>, 2025.</li>
+                    <li>"Social isolation, loneliness, and their joint effects on cognitive decline." <em>Science Direct</em>, 2025.</li>
+                    <li>"NAD+ precursor supplementation in human ageing." <em>Nature Metabolism</em>, 2025.</li>
+                    <li>Harvard-Mayo-Cedars-Sinai (2025). "Senolytics Are Safe for Seniors with Memory Loss." <em>NMN.com</em>.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h4>BrainAgeLab</h4>
+                <p>基于最新神经科学研究的脑健康知识平台。我们致力于将前沿科学发现转化为大众可理解、可执行的健康策略。所有内容均基于同行评审的学术文献，并定期更新。</p>
+                <p style="margin-top: 12px;"><strong>免责声明：</strong>本站内容仅供科学教育目的，不构成医疗建议。任何健康干预请咨询专业医疗人员。</p>
+            </div>
+            <div>
+                <h4>快速导航</h4>
+                <ul class="footer-links">
+                    <li><a href="#overview">研究概览</a></li>
+                    <li><a href="#mechanisms">衰老机制</a></li>
+                    <li><a href="#strategies">科学策略</a></li>
+                    <li><a href="#immunity">脑-免疫轴</a></li>
+                    <li><a href="#frontier">前沿发现</a></li>
+                    <li><a href="#plan">行动方案</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>关键词</h4>
+                <ul class="footer-links">
+                    <li><a href="#mechanisms">BDNF / 神经可塑性</a></li>
+                    <li><a href="#mechanisms">类淋巴系统</a></li>
+                    <li><a href="#immunity">神经免疫学</a></li>
+                    <li><a href="#strategies">地中海饮食</a></li>
+                    <li><a href="#strategies">间歇性禁食</a></li>
+                    <li><a href="#strategies">肠-脑轴</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>BrainAgeLab &copy; 2025-2026. 内容基于公开科学文献整理，定期更新。</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
+
+<script>
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Mobile nav toggle
+document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+    });
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
+        }
+    });
+});
+
+// Back to top
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('show', window.scrollY > 500);
+});
+backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Accordion
+function toggleAccordion(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('show');
+    // Close all
+    document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('show'));
+    document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+    // Open clicked if was closed
+    if (!isOpen) {
+        body.classList.add('show');
+        header.classList.add('active');
+    }
+}
+
+// Tabs
+function switchTab(event, tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+}
+
+// Scroll animations
+const fadeElements = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+fadeElements.forEach(el => observer.observe(el));
+
+// Progress bars animation
+const progressObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const fills = entry.target.querySelectorAll('.progress-fill');
+            fills.forEach(fill => {
+                fill.style.width = fill.dataset.width + '%';
+            });
+        }
+    });
+}, { threshold: 0.2 });
+document.querySelectorAll('.progress-item').forEach(item => {
+    progressObserver.observe(item.closest('.fade-in') || item);
+});
+
+// Quiz
+let quizScore = 0;
+let questionsAnswered = 0;
+const totalQuestions = 5;
+
+function checkAnswer(button, isCorrect) {
+    const question = button.closest('.quiz-question');
+    const questionIdx = question.dataset.question;
+    const resultDiv = document.getElementById('result' + questionIdx);
+    
+    // Prevent re-answering
+    if (question.dataset.answered) return;
+    question.dataset.answered = 'true';
+    
+    // Disable all buttons in this question
+    question.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.style.pointerEvents = 'none';
+    });
+    
+    if (isCorrect) {
+        button.classList.add('correct');
+        resultDiv.style.background = '#e8f8f0';
+        resultDiv.style.color = '#27ae60';
+        resultDiv.textContent = '正确！';
+        quizScore++;
+    } else {
+        button.classList.add('wrong');
+        // Highlight correct answer
+        question.querySelectorAll('.quiz-option').forEach(opt => {
+            if (opt.onclick.toString().includes('true')) {
+                opt.classList.add('correct');
+            }
+        });
+        resultDiv.style.background = '#fde8e8';
+        resultDiv.style.color = '#e74c3c';
+        resultDiv.textContent = '不正确，请查看正确答案（绿色高亮）。';
+    }
+    resultDiv.style.display = 'block';
+    
+    questionsAnswered++;
+    if (questionsAnswered === totalQuestions) {
+        const scoreDiv = document.getElementById('quizScore');
+        scoreDiv.style.display = 'block';
+        const percentage = Math.round((quizScore / totalQuestions) * 100);
+        let message = '';
+        if (percentage === 100) message = '完美！你对脑健康科学有非常全面的了解。';
+        else if (percentage >= 60) message = '不错！你已经掌握了核心知识，继续学习可以做得更好。';
+        else message = '加油！建议仔细阅读以上内容，提升你的脑健康知识储备。';
+        scoreDiv.textContent = `得分：${quizScore}/${totalQuestions} (${percentage}%) — ${message}`;
+    }
+}
+
+// Fix quiz correct answer detection
+document.querySelectorAll('.quiz-option').forEach(btn => {
+    const onclickStr = btn.getAttribute('onclick');
+    if (onclickStr && onclickStr.includes('true)')) {
+        btn.dataset.correct = 'true';
+    }
+});
+
+// Override checkAnswer to use data attribute
+(function() {
+    const originalCheck = window.checkAnswer;
+    window.checkAnswer = function(button, isCorrect) {
+        const question = button.closest('.quiz-question');
+        const questionIdx = question.dataset.question;
+        const resultDiv = document.getElementById('result' + questionIdx);
+        
+        if (question.dataset.answered) return;
+        question.dataset.answered = 'true';
+        
+        question.querySelectorAll('.quiz-option').forEach(opt => {
+            opt.style.pointerEvents = 'none';
+        });
+        
+        if (isCorrect) {
+            button.classList.add('correct');
+            resultDiv.style.background = '#e8f8f0';
+            resultDiv.style.color = '#27ae60';
+            resultDiv.textContent = '正确！';
+            quizScore++;
+        } else {
+            button.classList.add('wrong');
+            question.querySelectorAll('.quiz-option').forEach(opt => {
+                if (opt.dataset.correct === 'true') {
+                    opt.classList.add('correct');
+                }
+            });
+            resultDiv.style.background = '#fde8e8';
+            resultDiv.style.color = '#e74c3c';
+            resultDiv.textContent = '不正确，请查看正确答案（绿色高亮）。';
+        }
+        resultDiv.style.display = 'block';
+        
+        questionsAnswered++;
+        if (questionsAnswered === totalQuestions) {
+            const scoreDiv = document.getElementById('quizScore');
+            scoreDiv.style.display = 'block';
+            const percentage = Math.round((quizScore / totalQuestions) * 100);
+            let message = '';
+            if (percentage === 100) message = '完美！你对脑健康科学有非常全面的了解。';
+            else if (percentage >= 60) message = '不错！你已经掌握了核心知识，继续学习可以做得更好。';
+            else message = '加油！建议仔细阅读以上内容，提升你的脑健康知识储备。';
+            scoreDiv.textContent = `得分：${quizScore}/${totalQuestions} (${percentage}%) — ${message}`;
+        }
+    };
+})();
+</script>
+
+</body>
+</html>
