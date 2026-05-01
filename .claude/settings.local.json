@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Edit",
+      "Bash(python3:*)",
+      "Bash(curl:*)",
+      "Bash(osascript:*)",
+      "Skill(youtube-transcript-extractor)",
+      "Bash(fc-list:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Skill(content-visualizer)",
+      "Skill(canvas-design)",
+      "Bash(find:*)"
+    ]
+  },
+  "model": "opus",
+  "enabledPlugins": {
+    "frontend-design@claude-code-plugins": true,
+    "code-stats@my-marketplace": true,
+    "figma@claude-plugins-official": false,
+    "example-skills@anthropic-agent-skills": true
+  },
+  "alwaysThinkingEnabled": true,
+  "mcpServers": {
+    "web-fetch": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-fetch"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "puppeteer": {
+      "command": "node",
+      "args": [
+        "-e",
+        "const { Server } = require('@modelcontextprotocol/sdk/server/index.js'); const { StdioServerTransport } = require('@modelcontextprotocol/sdk/server/stdio.js'); const puppeteer = require('puppeteer'); const server = new Server({ name: 'puppeteer-mcp-server', version: '1.0.0' }, { capabilities: { tools: {} } }); server.setRequestHandler('tools/call', async (request) => { const { name, arguments: args } = request.params; if (name === 'fetch_webpage') { const browser = await puppeteer.launch({ headless: true }); const page = await browser.newPage(); await page.goto(args.url, { waitUntil: 'networkidle0' }); const content = await page.content(); const text = await page.evaluate(() => document.body.innerText || ''); await browser.close(); return { content: { type: 'text', text: JSON.stringify({ html: content, text: text, url: args.url }) } }; } }); server.setRequestHandler('tools/list', async () => ({ tools: [{ name: 'fetch_webpage', description: '抓取网页内容，包括HTML和纯文本', inputSchema: { type: 'object', properties: { url: { type: 'string', description: '要抓取的网页URL' } }, required: ['url'] } }] })); const transport = new StdioServerTransport(); server.connect(transport);"
+      ],
+      "env": {}
+    }
+  },
+  "outputStyle": "Structural Thinking"
+}
